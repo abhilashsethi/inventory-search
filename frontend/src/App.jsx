@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { fetchInventory } from './api/searchApi';
+import SearchForm from './components/SearchForm';
+import ResultsList from './components/ResultsList';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [filters, setFilters] = useState({
+    q: '',
+    category: '',
+    minPrice: '',
+    maxPrice: ''
+  });
+
+  const [results, setResults] = useState([]);
+  const [error, setError] = useState('');
+
+  const search = async () => {
+    try {
+      setError('');
+      const data = await fetchInventory(filters);
+      setResults(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    search();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ padding: 20 }}>
+      <h2>Inventory Search</h2>
+
+      <SearchForm
+        filters={filters}
+        setFilters={setFilters}
+        onSearch={search}
+      />
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <ResultsList results={results} />
+    </div>
+  );
 }
 
-export default App
+export default App;
