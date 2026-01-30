@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.container {
+  width: 100%;
+  padding: 24px 40px;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* ---------- Header ---------- */
+h1 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+p {
+  margin: 0;
+  color: #475569;
+}
+
+/* ---------- Form ---------- */
+.form-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr 1.5fr 1.5fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+/* ---------- Table ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+thead {
+  background-color: #f8fafc;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  font-size: 14px;
+  color: #334155;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* ---------- States ---------- */
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-size: 16px;
+}
+
+.error {
+  color: #dc2626;
+  margin: 12px 0;
+}

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { fetchInventory } from './api/searchApi';
+import Header from './components/Header';
 import SearchForm from './components/SearchForm';
-import ResultsList from './components/ResultsList';
+import ResultsTable from './components/ResultsTable';
+import './styles/app.css';
 
 function App() {
   const [filters, setFilters] = useState({
@@ -29,18 +31,15 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Inventory Search</h2>
-
+    <div className="container">
+      <Header />
       <SearchForm
         filters={filters}
         setFilters={setFilters}
         onSearch={search}
       />
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <ResultsList results={results} />
+      {error && <p className="error">{error}</p>}
+      <ResultsTable results={results} />
     </div>
   );
 }
